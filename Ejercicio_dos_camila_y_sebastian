@@ -1,0 +1,354 @@
+# include<iostream>         // librerias a utilizar
+
+#include<cstring>
+
+using namespace std;
+
+class Fecha{
+
+    int dia;
+    int mes;
+    int anio;
+    std::string diaTexto;
+    std::string mesTexto;
+    int hora;
+    int minutos;
+    int tipo;
+
+
+public:
+
+    Fecha(){};
+
+    int getTipo(){
+
+        return this->tipo;
+    }
+    bool InsertarFecha(int d, int m, int a, int h, int mi){
+
+        bool result = true;
+
+        if( d < 1 || d > 31 ){
+
+            result = false;
+        }
+
+        if( m < 1 || m > 24 ){
+
+            result = false;
+        }
+
+        if( a < 0 || a < 2019){
+
+            result = false;
+        }
+
+        if( h < 0 || h > 12){
+
+            result = false;
+        }
+
+        if( mi < 0 || mi > 59){
+
+            result = false;
+        }
+
+        if( result ){
+
+            this->dia = d;
+            this->mes = m;
+            this->anio = a;
+            this->hora = h;
+            this->minutos = mi;
+            this->tipo = 1;
+        }
+        return result;
+    }
+
+    bool InsertarFecha(std::string d, std::string m, int a, int h, int mi){
+
+        bool result = true;
+
+        if( a < 0 || a < 2019){
+
+            result = false;
+        }
+
+        if( h < 0 || h > 12){
+
+            result = false;
+        }
+
+        if( mi < 0 || mi > 59){
+
+            result = false;
+        }
+
+        if( result ){
+
+            this->diaTexto = d;
+            this->mesTexto = m;
+            this->anio = a;
+            this->hora = h;
+            this->minutos = mi;
+            this->tipo = 2;
+        }
+
+        return result;
+    }
+
+    int getDia(){
+
+        return this->dia;
+    }
+
+    int getMes(){
+
+        return this->mes;
+    }
+
+    std::string getDiaTexto(){
+
+        return this->dia;
+    }
+
+    std::string getMesTexto(){
+
+        return this->mes;
+    }
+
+    int getAnio(){
+
+        return this->anio;
+    }
+
+    int getHora(){
+
+        return this->hora;
+    }
+
+    int getMinutos(){
+
+        return this->minutos;
+    }
+};
+class Cita{
+
+    std::string nombre1;
+    std::string nombre2;
+    std::string lugar;
+    Fecha cita;
+
+public:
+
+    A(){};//consructor
+
+    void setNombre1(std::string n1){
+
+        this->nombre1 = n1;
+    }
+
+    void setNombre2(std::string n2){
+
+        this->nombre2 = n2;
+    }
+
+    void setLugar(std::string l){
+
+        this->lugar = l;
+    }
+
+    void setFecha(Fecha f){
+
+        this->cita = f;
+    }
+
+    Fecha getFecha(){
+
+        return this->cita;
+    }
+
+    std::string getNombre1(){
+
+        return this->nombre1;
+    }
+
+    std::string getNombre2(){
+
+        return this->nombre2;
+    }
+
+    std::string getLugar(){
+
+        return this->lugar;
+    }
+
+
+
+};
+
+class ListaCitas{
+
+    Cita Citas[10];
+    int tam;
+
+public:
+
+    ListaCitas(){ this->tam = -1;};
+    bool AlmacenarCita(std::string name1, std::string name2, std::string lugar, Fecha f){
+
+        bool result = false;
+
+        if( this->tam < 10 ){
+
+            Citas[tam+1].setNombre1(name1);
+            Citas[tam+1].setNombre2(name2);
+            Citas[tam+1].setLugar(lugar);
+            Citas[tam+1].setFecha(f);
+            this->tam++;
+            result = true;
+        }
+
+        return result;
+    }
+
+    void buscarCita(int n){
+
+        if(  tam >= n-1 ){
+
+            cout << "Cita Encontrada: " << endl;
+            cout << " Nombre1: " << Citas[n-1].getNombre1() << endl;
+            cout << " Nombre2: " << Citas[n-1].getNombre2() << endl;
+            cout << " Lugar: " << Citas[n-1].getLugar() << endl;
+
+            if( Citas[tam-1].getFecha().getTipo() == 1)
+                cout << " Fecha: " << Citas[tam-1].getFecha().getDia() << "/" <<  Citas[tam-1].getFecha().getMes() << "/" <<  Citas[tam-1].getFecha().getAnio() << " - " <<  Citas[tam-1].getFecha().getHora() << "/" <<  Citas[tam-1].getFecha().getMinutos() << endl;
+            else
+                cout << " Fecha: " << Citas[tam-1].getFecha().getDiaTexto() << "/" <<  Citas[tam-1].getFecha().getMesTexto() << "/" <<  Citas[tam-1].getFecha().getAnio() << " - " <<  Citas[tam-1].getFecha().getHora() << "/" <<  Citas[tam-1].getFecha().getMinutos() << endl;
+
+        }else{
+
+            cout << "No se encontro la cita" << endl;
+        }
+
+    }
+
+
+};
+int main(){
+
+
+    ListaCitas Citas;
+
+    int opcion;
+    std::string nombre1;
+    std::string nombre2;
+    std::string lugar;
+    Fecha cita;
+
+    bool result;
+    int salir = 1;
+
+    while( salir != 0 ){
+
+        cout << "1: Insertar Elemento: " << endl;
+        cout << "2: Buscar Elemento: " << endl;
+        cout << "c/n: Salir: " << endl;
+
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        if( opcion == 1){
+
+            int opf;
+            int dia;
+            int mes;
+            int anio;
+            std::string diaTexto;
+            std::string mesTexto;
+            int hora;
+            int minutos;
+            Fecha cita;
+
+            cout << "Nombre1: ";
+            cin >> nombre1;
+            cout << "Nombre2: ";
+            cin >> nombre2;
+            cout << "Lugar: ";
+            cin >> lugar;
+
+            cout << "Para la Fecha en Letras 1, en numeros 2: ";
+            cin >> opf;
+
+            if( opf == 1 ){
+
+                cout << "Dia: ";
+                cin >> dia;
+                cout << "Mes: ";
+                cin >> mes;
+                cout << "Anio: ";
+                cin >> anio;
+                cout << "Hora: ";
+                cin >> hora;
+                cout << "Minutos: ";
+                cin >> minutos;
+
+                if( cita.InsertarFecha(dia,mes,anio,hora,minutos) ){
+
+                   if( Citas.AlmacenarCita(nombre1,nombre2,lugar,cita) ){
+
+                        cout << "Se agrego la CITA" << endl;
+                   }else{
+
+                        cout << "Lista de citas Lenas" << endl;
+                   }
+                }else{
+
+                    cout << "Error en los datos de la fecha ..." << endl;
+                }
+            }else{
+
+                cout << "Dia: ";
+                cin >> diaTexto;
+                cout << "Mes: ";
+                cin >> mesTexto;
+                cout << "Anio: ";
+                cin >> anio;
+                cout << "Hora: ";
+                cin >> hora;
+                cout << "Minutos: ";
+                cin >> minutos;
+
+                if( cita.InsertarFecha(diaTexto,mesTexto,anio,hora,minutos) ){
+
+                   if( Citas.AlmacenarCita(nombre1,nombre2,lugar,cita) ){
+
+                        cout << "Se agrego la CITA" << endl;
+                   }else{
+
+                        cout << "Lista de citas Lenas" << endl;
+                   }
+                }else{
+
+                    cout << "Error en los datos de la fecha ..." << endl;
+                }
+            }
+
+        }else if( opcion == 2){
+
+            int i;
+
+            cout << "Posicion : ";
+            cin >> i;
+
+            Citas.buscarCita(i);
+        }else{
+
+            salir = 0;
+        }
+    }
+
+
+
+    return 0;
+}
