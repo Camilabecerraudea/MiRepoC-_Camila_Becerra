@@ -1,0 +1,173 @@
+# include<iostream>         // librerias a utilizar
+
+#include<cstring>
+
+using namespace std;
+
+class A{
+
+    int n;
+    std::string descp;
+
+public:
+
+    A(){};//consructor
+
+    void setN(int cod){
+
+        this->n = cod;
+    }
+
+    void setDescp(std::string desc){
+
+        this->descp = desc;
+    }
+
+    int getN(){
+
+        return this->n;
+    }
+
+    std::string getDescp(){
+
+        return this->descp;
+    }
+};
+
+class ListaObjetos{
+
+
+    A Objetos[20];
+
+    int tam;
+
+public:
+
+    ListaObjetos(){
+
+        this->tam = -1;
+    }; //constructor
+
+    bool AlmacenarObjeto(A objeto){
+
+        bool result = false;
+
+        if( this->tam < 20 ){
+
+            Objetos[tam+1] = objeto;
+            this->tam++;
+            result = true;
+        }
+
+        return result;
+    }
+
+    bool retirarArreglo(){
+
+        bool result = false;
+        cout << tam;
+        if( tam >= 0 ){
+
+            cout << "Elemento Extraido: " << endl;
+            cout << " Codigo: " << Objetos[tam].getN() << " Descripcion: " << Objetos[tam].getDescp() << endl;
+            Objetos[tam].setN(0);
+            Objetos[tam].setDescp(" ");
+            tam--;
+            result = true;
+        }else{
+
+            cout << "No hay elementos para extraer " << endl;
+        }
+
+        return result;
+    }
+
+    void BuscarArreglo(int n){
+
+        if(  tam >= n-1 ){
+
+            cout << "Elemento Encontrado: " << endl;
+            cout << " Codigo: " << Objetos[n-1].getN() << " Descripcion: " << Objetos[n-1].getDescp() << endl;
+
+        }else{
+
+            cout << "No se encontro el elemento" << endl;
+        }
+    }
+};
+
+bool InsertarElemento(int n, std::string descp, ListaObjetos *Lista){
+
+    A objeto;
+
+    objeto.setN(n);
+    objeto.setDescp(descp);
+
+
+
+    bool result = Lista->AlmacenarObjeto(objeto);
+
+    return result;
+}
+int main(){
+
+    ListaObjetos Objetos;
+
+    int cod;
+    int opcion;
+    std::string descp;
+
+    bool result;
+    int salir = 1;
+
+    while( salir != 0 ){
+
+        cout << "1: Insertar Elemento: " << endl;
+        cout << "2: Buscar Elemento: " << endl;
+        cout << "3: Retirar Elemento: " << endl;
+        cout << "c/n: Salir: " << endl;
+
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        if( opcion == 1){
+
+            cout << "Codigo : ";
+            cin >> cod;
+            cout << "Descripcion: ";
+            cin >> descp;
+
+            result =  InsertarElemento(cod,descp,&Objetos);
+
+            if( result )
+                cout << "Se inserto correctamente ..." << endl;
+            else
+                cout << "No se pudo insertar porque la lista esta llena ..." << endl;
+
+        }else if( opcion == 2){
+
+            int i;
+
+            cout << "Posicion : ";
+            cin >> i;
+
+            Objetos.BuscarArreglo(i);
+        }else if( opcion == 3){
+
+            bool result;
+
+            result = Objetos.retirarArreglo();
+
+            if( result )
+                cout << "Se extrajo correctamente ..." << endl;
+            else
+                cout << "Error ..." << endl;
+
+        }else{
+
+            salir = 0;
+        }
+    }
+
+    return 0;
+}
