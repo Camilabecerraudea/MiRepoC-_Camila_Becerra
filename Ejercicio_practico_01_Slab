@@ -1,0 +1,167 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+class complejo
+{
+    private:
+        double real_part;
+		double img_part;
+    public:
+    	complejo();
+    	complejo (double a,double b);
+    	complejo (const complejo&);
+    	void magnitud();
+    	
+	    friend complejo& operator +(const complejo &c1,const complejo &c2);
+	    friend complejo& operator -(const complejo &c1,const complejo &c2);  
+		friend complejo& operator *(const complejo &c1,const complejo &c2);
+		friend complejo& operator /(const complejo &c1,const complejo &c2); 
+        friend complejo& operator ~(const complejo &c);
+	    friend ostream& operator << (ostream &o,const complejo &c); 
+};
+
+complejo::complejo()
+{
+	real_part = 2;
+	img_part = 3;
+}
+
+complejo::complejo(double a,double b)
+{
+	real_part = a;
+	img_part = b;
+}
+
+complejo::complejo(const complejo &c)
+{
+	real_part = c.real_part;
+	img_part = c.img_part;
+}
+
+complejo& operator +(const complejo &c1,const complejo &c2)
+{
+    return *(new complejo((c1.real_part+c2.real_part),(c1.img_part+c2.img_part)));
+}
+
+complejo& operator -(const complejo &c1,const complejo &c2)
+{
+    return *(new complejo((c1.real_part-c2.real_part),(c1.img_part-c2.img_part)));
+}
+
+complejo& operator*(const complejo &c1,const complejo &c2)
+{
+	double a,b,c,d;
+	a = c1.real_part*c2.real_part;
+	b = c1.real_part*c2.img_part;
+    c = c1.img_part*c2.real_part;
+	d = c1.img_part*c2.img_part;
+    return *(new complejo((a-d),(b+c)));
+}
+
+complejo& operator/(const complejo &c1,const complejo &c2)
+{
+    complejo numerador = *new complejo(c1*(~c2));
+	complejo denominador = *new complejo(c2*(~c2));
+    return *(new complejo((numerador.real_part/denominador.real_part),(numerador.img_part/denominador.real_part)));
+}
+
+complejo& operator~(const complejo &c) 
+{
+    return *(new complejo((c.real_part),(c.img_part*-1)));
+}
+
+
+ostream& operator << (ostream &o,const complejo &c)
+{
+    o << "(" << c.real_part << "+" << c.img_part << "i)";
+    return o;
+}
+
+void complejo::magnitud ()
+{
+    double magnitud;
+    magnitud = sqrt(pow(real_part,2)+pow(img_part,2));
+    
+    cout << "La magnitud es: " << magnitud << endl;
+
+}
+
+int main()
+{
+	char opc,opc2;
+    double a,b,c,d;
+    cout << "Ingrese parte entera del complejo A:" << endl;
+    cin >> a;
+    cout << "Ingrese parte imaginaria del complejo A:" << endl;
+    cin >> b;
+    cout << "Ingrese parte entera del complejo B:" << endl;
+    cin >> c;
+    cout << "Ingrese parte imaginaria del complejo B:" << endl;
+    cin >> d;
+    
+
+    
+    complejo c1(a,b);
+	complejo c2(c,d);
+
+	do
+	{
+		opc2 = '0';
+		cout << "******************" << endl;
+		cout << "1.Sumar los numeros complejos" << endl;
+		cout << "2.Restar los numeros complejos" << endl;
+		cout << "3.Multiplicar los numeros complejos" << endl;
+		cout << "4.Dividir los numeros complejos" << endl;
+		cout << "5.Hallar el conjugado de un numero complejos" << endl;
+		cout << "6.Hallar magnitud de un numeros complejos" << endl;
+		cout << "7.Salir" << endl;
+		cin>>opc;
+		switch(opc)
+		{
+			case '1':
+				cout << "El resultado es: "<< c1+c2 << endl;
+				break;
+			case '2':
+				cout << "El resultado es: "<< c1-c2 << endl;
+				break;
+			case '3':
+				cout << "El resultado es: "<< c1*c2 << endl;
+				break;
+			case '4':
+				cout << "El resultado es: "<< c1/c2 << endl;
+				break;
+			case '5':
+				cout << "A cual complejo: " << endl;
+				while(opc2!='1' and opc2!='2')
+				{
+					cout << "1.Complejo A \n2.Complejo B" << endl;
+					cin >> opc2;	
+				}
+				if(opc2=='1')
+					cout <<	~c1 << endl;
+				else
+					cout << ~c2 << endl;
+				break;
+			case '6':
+				cout << "A cual complejo: " << endl;
+				while(opc2!='1' and opc2!='2')
+				{
+					cout << "1.Complejo A \n2.Complejo B" << endl;
+					cin >> opc2;	
+				}
+				if(opc2=='1')
+					c1.magnitud();
+				else
+					c2.magnitud();
+				break;
+			case '7':
+				break;
+			default:
+				cout << "Opcion incorrecta intente nuevamente" << endl;
+				break;
+		}
+		
+	}while(opc!='7');
+}
