@@ -1,0 +1,397 @@
+#include <iostream>
+
+using namespace std;
+
+class SerVivo
+{
+    public:
+        virtual void Respiro() = 0;
+        virtual void MeAlimento() = 0;
+        virtual void Habito() = 0;
+        virtual void MeReproduzco() = 0;
+        virtual void MeDesplazo() = 0;
+        virtual void ImprimirDatosSerVivo() = 0;
+};
+
+class Ave: virtual public SerVivo
+{
+    protected:
+
+        int patas;
+        bool alas,huevos,veneno;
+        string tipoPiel,teacae,habitat;
+        string AparatoRes,ModoMovi,TipoAli,Alimen;
+    public:
+        Ave(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        Ave(const Ave& obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void Respiro() { cout << "Respiro por " << AparatoRes << endl;};
+        void MeAlimento() {cout << "Soy " << TipoAli <<" me alimento de " << Alimen << endl;};
+        void Habito() { cout << "Soy un animal " << teacae << " habito en " << habitat << endl;};
+        void MeReproduzco() { 
+            if(huevos){cout << "Me reproduzco mediante huevos" << endl;} 
+            else{cout << "Me reproduzco teniendo crias" << endl;}             
+            };
+        void MeDesplazo() { 
+            if(alas){cout << "Tengo alas" << endl;}
+            else{cout << "No tengo alas" << endl;}
+            cout << "Me desplazo " << ModoMovi << endl;};
+};
+
+class Mamifero: public SerVivo
+{
+    protected:
+
+        int patas;
+        bool alas,huevos,veneno;
+        string tipoPiel,teacae,habitat;
+        string AparatoRes,ModoMovi,TipoAli,Alimen;
+    public:
+    	Mamifero();
+        Mamifero(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        Mamifero(const Mamifero& obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void Respiro() { cout << "Respiro por " << AparatoRes << endl;};
+        void MeAlimento() {cout << "Soy " << TipoAli <<" me alimento de " << Alimen << endl;};
+        void Habito() { cout << "Soy un animal " << teacae << " habito en " << habitat << endl;};
+        void MeReproduzco() { 
+            if(huevos){cout << "Me reproduzco mediante huevos" << endl;} 
+            else{cout << "Me reproduzco teniendo crias" << endl;}             
+            };
+        void MeDesplazo() { 
+            if(alas){cout << "Tengo alas" << endl;}
+            else{cout << "No tengo alas" << endl;}
+            cout << "Me desplazo " << ModoMovi << endl;};
+};
+class Reptil: public SerVivo
+{
+    protected:
+
+        int patas;
+        bool alas,huevos,veneno;
+        string tipoPiel,teacae,habitat;
+        string AparatoRes,ModoMovi,TipoAli,Alimen;
+    public:
+        Reptil(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        Reptil(const Reptil& obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void Respiro() { cout << "Respiro por " << AparatoRes << endl;};
+        void MeAlimento() {cout << "Soy " << TipoAli <<" me alimento de " << Alimen << endl;};
+        void Habito() { cout << "Soy un animal " << teacae << " habito en " << habitat << endl;};
+        void MeReproduzco() { 
+            if(huevos){cout << "Me reproduzco mediante huevos" << endl;} 
+            else{cout << "Me reproduzco teniendo crias" << endl;}             
+            };
+        void MeDesplazo() { 
+            if(alas){cout << "Tengo alas" << endl;}
+            else{cout << "No tengo alas" << endl;}
+            cout << "Me desplazo " << ModoMovi << endl;};
+};
+class Anfibio: public SerVivo
+{
+    protected:
+
+        int patas;
+        bool alas,huevos,veneno;
+        string tipoPiel,teacae,habitat;
+        string AparatoRes,ModoMovi,TipoAli,Alimen;
+    public:
+        Anfibio(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        Anfibio(const Anfibio& obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void Respiro() { cout << "Respiro por " << AparatoRes << endl;};
+        void MeAlimento() {cout << "Soy " << TipoAli <<" me alimento de " << Alimen << endl;};
+        void Habito() { cout << "Soy un animal " << teacae << " habito en " << habitat << endl;};
+        void MeReproduzco() { 
+            if(huevos){cout << "Me reproduzco mediante huevos" << endl;} 
+            else{cout << "Me reproduzco teniendo crias" << endl;}             
+            };
+        void MeDesplazo() { 
+            if(alas){cout << "Tengo alas" << endl;}
+            else{cout << "No tengo alas" << endl;}
+            cout << "Me desplazo " << ModoMovi << endl;};
+};
+class Pez: public SerVivo
+{
+    protected:
+
+        int patas;
+        bool alas,huevos,veneno;
+        string tipoPiel,teacae,habitat;
+        string AparatoRes,ModoMovi,TipoAli,Alimen;
+    public:
+    	Pez();
+        Pez(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        Pez(const Pez& obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void Respiro() { cout << "Respiro por " << AparatoRes << endl;};
+        void MeAlimento() {cout << "Soy " << TipoAli <<" me alimento de " << Alimen << endl;};
+        void Habito() { cout << "Soy un animal " << teacae << " habito en " << habitat << endl;};
+        void MeReproduzco() { 
+            if(huevos){cout << "Me reproduzco mediante huevos" << endl;} 
+            else{cout << "Me reproduzco teniendo crias" << endl;}             
+            };
+        void MeDesplazo() { 
+            if(alas){cout << "Tengo alas" << endl;}
+            else{cout << "No tengo alas" << endl;}
+            cout << "Me desplazo " << ModoMovi << endl;};
+};
+class insecto: public SerVivo
+{
+    protected:
+
+        int patas;
+        bool alas,huevos,veneno;
+        string tipoPiel,teacae,habitat;
+        string AparatoRes,ModoMovi,TipoAli,Alimen;
+    public:
+    	insecto();
+        insecto(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        insecto(const insecto& obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void Respiro() { cout << "Respiro por " << AparatoRes << endl;};
+        void MeAlimento() {cout << "Soy " << TipoAli <<" me alimento de " << Alimen << endl;};
+        void Habito() { cout << "Soy un animal " << teacae << " habito en " << habitat << endl;};
+        void MeReproduzco() { 
+            if(huevos){cout << "Me reproduzco mediante huevos" << endl;} 
+            else{cout << "Me reproduzco teniendo crias" << endl;}             
+            };
+        void MeDesplazo() { 
+            if(alas){cout << "Tengo alas" << endl;}
+            else{cout << "No tengo alas" << endl;}
+            cout << "Me desplazo " << ModoMovi << endl;};
+};
+
+class ifrita:public Ave
+{
+    public:
+    	  ifrita();
+        ifrita(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali): Ave(p,al,hue,ven,tp,taa,hab,AR,MoM,TA,Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        ifrita(const ifrita& obj):Ave(obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void ImprimirDatosSerVivo()
+        {
+            cout << "\n\n";
+            cout << "Soy un ifrita y estos son mis datos: " << endl;
+            Ave::Respiro();
+            Ave::MeAlimento();
+            Ave::Habito();
+            Ave::MeReproduzco();
+            Ave::MeDesplazo();
+            if(veneno)
+            {
+                cout << "Soy un animal venenoso" << endl;
+            }
+            else
+            {
+                cout << "No soy un animal venenoso" << endl;
+            }
+        }
+};
+
+class tejon: public Mamifero
+{
+    public:
+    	tejon();
+        tejon(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali,int ga,string ho):Mamifero(p,al,hue,ven,tp,taa,hab,AR,MoM,TA,Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        tejon(const tejon& obj):Mamifero(obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+        void ImprimirDatosSerVivo()
+        {
+            cout << "\n\n";
+            cout << "Soy un rejon y estos son mis datos: " << endl;
+            Mamifero::Respiro();
+            Mamifero::MeAlimento();
+            Mamifero::Habito();
+            Mamifero::MeReproduzco();
+            Mamifero::MeDesplazo();
+            if(veneno)
+            {
+                cout << "Soy un animal venenoso" << endl;
+            }
+            else
+            {
+                cout << "No soy un animal venenoso" << endl;
+            }
+        }
+};
+
+class mantis: public insecto
+{
+    public:
+    	mantis();
+        mantis(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali):insecto(p,al,hue,ven,tp,taa,hab,AR,MoM,TA,Ali)
+        {
+            patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        mantis(const mantis& obj):insecto(obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+    void ImprimirDatosSerVivo()
+    {
+        cout << "\n\n";
+        cout << "Soy una mantis y estos son mis datos: " << endl;
+        insecto::Respiro();
+        insecto::MeAlimento();
+        insecto::Habito();
+        insecto::MeReproduzco();
+        insecto::MeDesplazo();
+        if(veneno)
+        {
+            cout << "Soy un animal venenoso" << endl;
+        }
+        else
+        {
+            cout << "No soy un animal venenoso" << endl;
+        }
+    }
+};
+
+class piedra:public Pez
+{
+    public:
+    	piedra();
+        piedra(int p,bool al,bool hue,bool ven,string tp,string taa,string hab,string AR,string MoM,string TA,string Ali):Pez(p,al,hue,ven,tp,taa,hab,AR,MoM,TA,Ali)
+        {
+
+            ;patas=p;
+            alas=al;huevos=hue;veneno=ven;
+            tipoPiel=tp;teacae = taa; habitat=hab;
+            AparatoRes=AR;ModoMovi=MoM;TipoAli = TA;Alimen=Ali;
+        }
+        piedra(const piedra& obj):Pez(obj)
+        {
+            patas=obj.patas;
+            alas=obj.alas;huevos=obj.huevos;veneno=obj.veneno;
+            tipoPiel=obj.tipoPiel;teacae = obj.teacae; habitat=obj.habitat;
+            AparatoRes=obj.AparatoRes;ModoMovi=obj.ModoMovi;TipoAli = obj.TipoAli;Alimen=obj.Alimen;
+        }
+    void ImprimirDatosSerVivo()
+    {
+        cout << "\n\n";
+        cout << "Soy un pez piedra y estos son mis datos: " << endl;
+        Pez::Respiro();
+        Pez::MeAlimento();
+        Pez::Habito();
+        Pez::MeReproduzco();
+        Pez::MeDesplazo();
+        if(veneno)
+        {
+            cout << "Soy un animal venenoso" << endl;
+        }
+        else
+        {
+            cout << "No soy un animal venenoso" << endl;
+        }
+    }
+};
+
+int main()
+{
+  
+    piedra adolf(0,false,true,true,"escamas","acuatico","Mar Australiano","Branquias","Nadando","Carnivoro","Peces");
+    mantis religiosa(6,true,true,false,"Exoesqueleto","Terrestre","Bosques","Traqueas","Caminando","Carnivoro","Insectos");
+    tejon alf(4,false,false,false,"Pelo","Terrestre","Zonas semiaridas Europa","Nariz","Caminando","Omnivoro","Abejas",5,"Cuevas");
+    
+    ifrita ven(2,true,true,true,"plumas","Aereo","Bosques humedos","Nariz","Volando","Insectivoro","insectos");
+    adolf.ImprimirDatosSerVivo();
+    religiosa.ImprimirDatosSerVivo();
+    alf.ImprimirDatosSerVivo();
+    ven.ImprimirDatosSerVivo();
+
+}
