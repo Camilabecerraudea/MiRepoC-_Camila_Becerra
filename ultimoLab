@@ -1,0 +1,274 @@
+#include <iostream>
+
+using namespace std;
+
+class compTecnicaEspecial
+{
+    public:
+        compTecnicaEspecial(){};
+        ~compTecnicaEspecial(){};
+        virtual void tecnicaEspecial() = 0;
+};
+
+class compGolpePatada
+{
+    public:
+        compGolpePatada(){};
+        ~compGolpePatada(){};
+        virtual void patada() = 0;
+};
+
+class compPoder
+{
+    public:
+        compPoder(){};
+        ~compPoder(){};
+        virtual void poder() = 0;
+};
+
+//Tecnicas especiales
+//Para luffy(personaje1)
+class tecnica1:public compTecnicaEspecial
+{
+    public:
+        tecnica1(){};
+        ~tecnica1(){};
+        virtual void tecnicaEspecial() { cout << "Thor Elephant Gun" << endl; };
+};
+
+//Para saitama(personaje2)
+class tecnica2:public compTecnicaEspecial
+{
+    public:
+        tecnica2(){};
+        ~tecnica2(){};
+        virtual void tecnicaEspecial() { cout << "Serious Table Flip" << endl; };
+};
+
+//Para Goku(personaje3)
+class tecnica3:public compTecnicaEspecial
+{
+    public:
+        tecnica3(){};
+        ~tecnica3(){};
+        virtual void tecnicaEspecial() { cout << "Genki-dama" << endl; };
+};
+
+//Patadas
+//Para luffy(personaje1)
+class patada1:public compGolpePatada
+{
+    public:
+        patada1(){};
+        ~patada1(){};
+        virtual void patada() { cout << "Gomu Gomu no Jet Axe" << endl; };
+};
+
+//Para saitama(personaje2)
+class patada2:public compGolpePatada
+{
+    public:
+        patada2(){};
+        ~patada2(){};
+        virtual void patada() { cout << "Patada simple" << endl; };
+};
+
+//Para Goku(personaje3)
+class patada3:public compGolpePatada
+{
+    public:
+        patada3(){};
+        ~patada3(){};
+        virtual void patada() { cout << "Patada" << endl; };
+};
+
+//Poderes
+//Para luffy(personaje1)
+class poder1:public compPoder
+{
+    public:
+        poder1(){};
+        ~poder1(){};
+        virtual void poder() { cout << "Elephant Gun" << endl; };
+};
+
+//Para saitama(personaje2)
+class poder2:public compPoder
+{
+    public:
+        poder2(){};
+        ~poder2(){};
+        virtual void poder() { cout << "Serious Punch" << endl; };
+};
+
+//Para Goku(personaje3)
+class poder3:public compPoder
+{
+    public:
+        poder3(){};
+        ~poder3(){};
+        virtual void poder() { cout << "Kame-hame-ha" << endl; };
+};
+
+//Clase luchador
+class luchador:public compTecnicaEspecial,public compGolpePatada,public compPoder
+{
+    //protected:
+    public:
+        luchador(){};
+        ~luchador(){};
+        compTecnicaEspecial *ptr1;
+        compGolpePatada *ptr2;
+        compPoder *ptr3;
+        void saludo(){cout << "hola soy un luchador"<< endl;}
+        
+        //Definimos las funciones virtuales para evitar el error por funciones abstractas
+		void tecnicaEspecial(){}
+		void poder() {}
+    	void patada(){}
+        void ejecutarEspecial()
+        {
+        	cout << "usando tenica especial ";
+            ptr1->tecnicaEspecial();
+        }
+        void ejecutarPatada()
+        {
+        	cout << "usando patada ";
+            ptr2->patada();
+        }
+        void ejecutarPoder()
+        {
+        	cout << "usando poder ";
+            ptr3->poder();
+        }
+};
+
+class luffy:public luchador
+{
+    public:
+        luffy()
+        {
+        	ptr1 = new tecnica1;
+        	ptr2 = new patada1;
+            ptr3 = new poder1;
+        }
+        ~luffy()
+        {
+            delete ptr1;
+            delete ptr2;
+            delete ptr3;
+        }
+        void saludo(){cout << "Soy Monkey D. Luffy, el futuro rey pirata" << endl;}
+};
+
+class saitama:public luchador
+{
+    public:
+        saitama()
+        {
+        	ptr1 = new tecnica2;
+        	ptr2 = new patada2;
+            ptr3 = new poder2;
+        }
+        ~saitama()
+        {
+            delete ptr1;
+            delete ptr2;
+            delete ptr3;
+        }
+        void saludo(){cout << "Hola,soy un heroe clase-C" << endl;}
+};
+
+class goku:public luchador
+{
+    public:
+        goku()
+        {
+        	ptr1 = new tecnica3;
+        	ptr2 = new patada3;
+            ptr3 = new poder3;
+        }
+        ~goku()
+        {
+            delete ptr1;
+            delete ptr2;
+            delete ptr3;
+        }
+        void saludo(){cout << "Hola soy goku" << endl;}
+};
+
+void menu(luchador pj)
+{
+
+}
+
+int main()
+{
+    char opc1,opc2;  //Para validar que se escogio un personaje
+    bool siguiente;
+    luchador *pj;
+
+    do
+    {
+        siguiente=false;
+        cout << "\n";
+        cout << "Escoja a su personaje:\n";
+        cout << "1.luffy\n";
+        cout << "2.Saitama\n";
+        cout << "3.Goku\n";
+        cout << "4.Salir\n";
+        cin >> opc1;
+        switch(opc1)
+        {
+            case '1':
+                pj = new luffy;
+                siguiente = true;
+                break;
+            
+            case '2':
+                pj = new saitama;
+                siguiente = true;
+                break;
+            
+            case '3':
+                pj = new goku;
+                siguiente = true;
+                break;
+            
+            case '4': cout << "Adios!\n"; 
+                break;
+            default: cout << "Error, opcion incorrecta" << endl;
+        }
+        if(siguiente)
+        {
+            do
+            {
+                cout << "\n";
+                cout << "Acciones:\n";
+                cout << "1.Patada\n";
+                cout << "2.Poder\n";
+                cout << "3.Tecnica especial\n";
+                cout << "4.Seleccionar otro\n";
+                cin >> opc2;
+                switch(opc2)
+                {
+                    case '1':
+                        pj->ejecutarPatada();
+                        break;
+                    
+                    case '2':
+                        pj->ejecutarPoder();
+                        break;
+                    
+                    case '3':
+                        pj->ejecutarEspecial();
+                        break;
+                    
+                    case '4': cout << "Volviendo al menu de personajes\n"; 
+                        break;
+                    default: cout << "Error, opcion incorrecta" << endl;
+                }
+            }while(opc2!='4');
+        }
+    }while(opc1!='4' and siguiente);
+}
